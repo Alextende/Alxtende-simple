@@ -108,15 +108,20 @@
       <button onclick="calcolaPrezzo(2, 170)">Calcola Prezzo</button>
       <div class="prezzo" id="prezzo2"></div>
     </div>
-  </section>  <section class="section" id="sostituzione-teli">
-    <h3>Sostituzione Teli in Tessuto Tempotest</h3>
-    <p>Prezzo: 35€/mq</p>
-    <div class="form">
-      <input type="number" id="larghezza3" placeholder="Larghezza (m)">
-      <input type="number" id="altezza3" placeholder="Altezza (m)">
-      <input type="text" placeholder="Colore Tempotest con codice">
-      <button onclick="calcolaPrezzo(3, 35)">Calcola Prezzo</button>
-      <div class="prezzo" id="prezzo3"></div>
+  </section>  <section class="section" id="teli">
+  <h3>Sostituzione Teli in Tessuto Tempotest</h3>
+  <p>Prezzo: 35€/mq</p>
+  <div class="tende-gallery">
+    <img src="telo_sostituzione.jpg" alt="Sostituzione telo esempio" class="product-image">
+  </div>
+  <div class="form">
+    <input type="number" id="larghezza3" placeholder="Larghezza (m)">
+    <input type="number" id="altezza3" placeholder="Altezza (m)">
+    <input type="text" placeholder="Colore Tempotest (con codice)">
+    <button onclick="calcolaPrezzo(3, 35)">Calcola Prezzo</button>
+    <div class="prezzo" id="prezzo3"></div>
+  </div>
+  </section>
     </div>
   </section>  <script>
     function calcolaPrezzo(id, costoMq) {
