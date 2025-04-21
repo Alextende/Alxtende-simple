@@ -30,7 +30,53 @@
     }
   </style>
 </head>
-<body>
+<body><section id="sostituzione-telo" style="background-color: #000; color: #0f0; padding: 40px; text-align: center;">
+  <h2>Sostituzione Telo in Tessuto Tempotest</h2>
+  <p>Calcola il prezzo per la sostituzione del telo: <strong>35€/mq</strong></p>
+
+  <div style="margin-top: 20px;">
+    <label>Larghezza (in metri):</label>
+    <input type="number" id="larghezza-telo" placeholder="Es. 3.0" step="0.1"><br><br>
+
+    <label>Altezza (in metri):</label>
+    <input type="number" id="altezza-telo" placeholder="Es. 2.5" step="0.1"><br><br>
+
+    <label>Seleziona colore Tempotest:</label>
+    <select id="colore-tempotest">
+      <option value="TT-01">TT-01 Beige</option>
+      <option value="TT-02">TT-02 Verde Bosco</option>
+      <option value="TT-03">TT-03 Rosso Mattone</option>
+      <option value="TT-04">TT-04 Grigio Fumo</option>
+      <option value="TT-05">TT-05 Blu Navy</option>
+      <option value="TT-06">TT-06 Righe Giallo-Bianche</option>
+    </select><br><br>
+
+    <button onclick="calcolaPrezzoTelo()">Calcola Prezzo</button>
+    <p id="prezzo-telo"></p>
+
+    <div style="margin-top: 30px;">
+      <h3>Esempio di Telo Tempotest</h3>
+      <img src="esempio-telo.jpg" alt="Esempio Telo Tempotest" style="width:300px; border: 2px solid #0f0;">
+    </div>
+  </div>
+</section>
+
+<script>
+  function calcolaPrezzoTelo() {
+    const larghezza = parseFloat(document.getElementById('larghezza-telo').value);
+    const altezza = parseFloat(document.getElementById('altezza-telo').value);
+    const prezzoMq = 35;
+
+    if (!larghezza || !altezza || larghezza <= 0 || altezza <= 0) {
+      document.getElementById('prezzo-telo').innerText = "Inserisci dimensioni valide";
+      return;
+    }
+
+    const area = larghezza * altezza;
+    const prezzo = (area * prezzoMq).toFixed(2);
+    document.getElementById('prezzo-telo').innerText = `Prezzo sostituzione telo: €${prezzo}`;
+  }
+</script>
   <header><body>
   <nav style="background-color: #111; padding: 10px; text-align: center;">
     <a href="#new-roma" style="color: lime; margin: 0 15px; text-decoration: none; font-weight: bold;">New Roma</a>
