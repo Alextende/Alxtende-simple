@@ -1,101 +1,105 @@
 <!DOCTYPE html><html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ALX Tende e Pergotende</title>
-  <style>
-    body {
-      background-color: black;
-      color: lime;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2em;
-      margin-bottom: 10px;
-    }
-    .menu {
-      margin: 20px 0;
-    }
-    .menu button {
-      background-color: lime;
-      color: black;
-      border: none;
-      padding: 10px 20px;
-      font-size: 1em;
-      margin: 5px;
-      cursor: pointer;
-    }
-    .section {
-      display: none;
-      margin-top: 30px;
-    }
-    img {
-      max-width: 200px;
-      margin: 10px auto;
-    }
-    input, select {
-      font-size: 1em;
-      padding: 5px;
-      margin: 5px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALX Tende da Sole</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        header img {
+            width: 200px;
+            margin-top: 20px;
+        }
+        h1 {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+        .menu {
+            margin: 20px 0;
+        }
+        .menu button {
+            background-color: lime;
+            color: black;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        section {
+            margin-top: 30px;
+        }
+        .prodotto img {
+            width: 100px;
+            margin: 5px;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <img src="Logo.png" alt="Logo ALX Tende da Sole" />
-    <h1>Benvenuto su ALX Tende e Pergotende</h1>
-    <p>Sito in costruzione. Torna presto!</p>
-  </header>  <div class="menu">
-    <button onclick="showSection('tendaClassica')">Tenda Classica a Caduta</button>
-    <button onclick="showSection('sostituzioneTeli')">Sostituzione Teli</button>
-  </div>  <section id="tendaClassica" class="section">
+    <header>
+        <img src="Logo.png" alt="Logo ALX Tende da Sole">
+        <h1>Benvenuto su ALX Tende e Pergotende</h1>
+        <p>Sito in costruzione. Torna presto!</p>
+    </header><div class="menu">
+    <button onclick="mostraSezione('tenda-classica')">Tenda Classica a Caduta</button>
+    <button onclick="mostraSezione('sostituzione-teli')">Sostituzione Teli</button>
+</div>
+
+<section id="tenda-classica" style="display:none">
     <h2>Tenda Classica a Caduta</h2>
+    <div class="prodotto">
+        <img src="tenda1.jpg" alt="Tenda Classica 1">
+        <img src="tenda2.jpg" alt="Tenda Classica 2">
+    </div>
     <p>Prezzo: 70€/mq</p>
-    <label for="larghezzaTenda">Larghezza (in metri):</label><br />
-    <input type="number" id="larghezzaTenda" value="1" /><br /><label for="altezzaTenda">Altezza (in metri):</label><br />
-<input type="number" id="altezzaTenda" value="1" /><br />
+    <label>Larghezza (in metri): <input type="number" id="larghezzaTenda" value="1"></label><br>
+    <label>Altezza (in metri): <input type="number" id="altezzaTenda" value="1"></label><br>
+    <p id="prezzoTenda"></p>
+</section>
 
-<p id="prezzoTenda">Prezzo tenda: €70.00</p>
-
-  </section>  <section id="sostituzioneTeli" class="section">
+<section id="sostituzione-teli" style="display:none">
     <h2>Sostituzione Teli in Tessuto Tempotest</h2>
     <p>Prezzo: 35€/mq</p>
-    <label for="larghezzaTelo">Larghezza (in metri):</label><br />
-    <input type="number" id="larghezzaTelo" value="1" /><br /><label for="altezzaTelo">Altezza (in metri):</label><br />
-<input type="number" id="altezzaTelo" value="1" /><br />
+    <label>Larghezza (in metri): <input type="number" id="larghezzaTelo" value="1"></label><br>
+    <label>Altezza (in metri): <input type="number" id="altezzaTelo" value="1"></label><br>
+    <label>Colore Tempotest (con codice): <input type="text" id="coloreTelo"></label><br>
+    <p id="prezzoTelo"></p>
+</section>
 
-<label for="coloreTempotest">Colore Tempotest (con codice):</label><br />
-<input type="text" id="coloreTempotest" placeholder="Es: 15/1" /><br />
-
-<p id="prezzoTelo">Prezzo sostituzione telo: €35.00</p>
-
-  </section>  <script>
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(section => {
-        section.style.display = 'none';
-      });
-      document.getElementById(id).style.display = 'block';
+<script>
+    function mostraSezione(id) {
+        document.getElementById('tenda-classica').style.display = 'none';
+        document.getElementById('sostituzione-teli').style.display = 'none';
+        document.getElementById(id).style.display = 'block';
     }
 
-    const updatePrezzo = () => {
-      const larghezzaTenda = parseFloat(document.getElementById('larghezzaTenda').value) || 0;
-      const altezzaTenda = parseFloat(document.getElementById('altezzaTenda').value) || 0;
-      const prezzoTenda = larghezzaTenda * altezzaTenda * 70;
-      document.getElementById('prezzoTenda').textContent = `Prezzo tenda: €${prezzoTenda.toFixed(2)}`;
+    document.getElementById('larghezzaTenda').addEventListener('input', calcolaPrezzoTenda);
+    document.getElementById('altezzaTenda').addEventListener('input', calcolaPrezzoTenda);
 
-      const larghezzaTelo = parseFloat(document.getElementById('larghezzaTelo').value) || 0;
-      const altezzaTelo = parseFloat(document.getElementById('altezzaTelo').value) || 0;
-      const prezzoTelo = larghezzaTelo * altezzaTelo * 35;
-      document.getElementById('prezzoTelo').textContent = `Prezzo sostituzione telo: €${prezzoTelo.toFixed(2)}`;
-    };
+    function calcolaPrezzoTenda() {
+        let larghezza = parseFloat(document.getElementById('larghezzaTenda').value);
+        let altezza = parseFloat(document.getElementById('altezzaTenda').value);
+        let prezzo = larghezza * altezza * 70;
+        document.getElementById('prezzoTenda').textContent = `Prezzo tenda: €${prezzo.toFixed(2)}`;
+    }
 
-    document.querySelectorAll('input').forEach(input => {
-      input.addEventListener('input', updatePrezzo);
-    });
+    document.getElementById('larghezzaTelo').addEventListener('input', calcolaPrezzoTelo);
+    document.getElementById('altezzaTelo').addEventListener('input', calcolaPrezzoTelo);
 
-    // Show first section by default
-    showSection('tendaClassica');
-  </script></body>
+    function calcolaPrezzoTelo() {
+        let larghezza = parseFloat(document.getElementById('larghezzaTelo').value);
+        let altezza = parseFloat(document.getElementById('altezzaTelo').value);
+        let prezzo = larghezza * altezza * 35;
+        document.getElementById('prezzoTelo').textContent = `Prezzo sostituzione telo: €${prezzo.toFixed(2)}`;
+    }
+</script>
+
+</body>
 </html>
