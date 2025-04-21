@@ -1,124 +1,131 @@
 <!DOCTYPE html><html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ALX Tende e Pergotende</title>
   <style>
     body {
+      margin: 0;
       background-color: black;
       color: lime;
       font-family: Arial, sans-serif;
       text-align: center;
     }
     header img {
-      width: 200px;
-      margin-top: 10px;
+      width: 250px;
+      margin-top: 20px;
     }
     nav {
-      background-color: #111;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
+      background-color: #111;
       padding: 10px;
+    }
+    .menu {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: center;
+      gap: 20px;
     }
-    .menu-toggle {
-      font-size: 24px;
-      cursor: pointer;
-      margin-left: 20px;
-    }
-    .menu-items {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 50px;
-      left: 10px;
-      background-color: #222;
-      padding: 10px;
-    }
-    .menu-items a {
+    .menu a {
       color: lime;
       text-decoration: none;
-      margin: 5px 0;
+      font-weight: bold;
     }
-    section {
-      padding: 80px 20px 20px;
+    .section {
+      padding: 40px 20px;
     }
-    input, select {
-      padding: 10px;
-      margin: 10px;
+    .tende-gallery {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .tende-gallery img {
+      width: 120px;
+      height: auto;
+      border: 2px solid lime;
+    }
+    .form {
+      max-width: 300px;
+      margin: auto;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
       font-size: 16px;
     }
     button {
-      padding: 10px 20px;
       background-color: lime;
       border: none;
-      cursor: pointer;
+      padding: 10px;
+      width: 100%;
       font-weight: bold;
     }
-    img.example {
-      width: 120px;
-      margin: 10px;
+    .prezzo {
+      font-size: 18px;
+      margin-top: 15px;
+      color: #00ff99;
     }
   </style>
 </head>
 <body>
   <nav>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <div class="menu-items" id="menuItems">
-      <a href="#caduta">Tenda Classica a Caduta</a>
-      <a href="#sostituzione">Sostituzione Teli</a>
-      <a href="#bracci">Tenda a Bracci Estensibili</a>
+    <div class="menu">
+      <a href="#tenda-classica">Tenda Classica a Caduta</a>
+      <a href="#tenda-bracci">Tenda a Bracci Estensibili</a>
+      <a href="#sostituzione-teli">Sostituzione Teli</a>
     </div>
-  </nav>  <section>
-    <img src="Logo.png" alt="Logo ALX Tende da Sole" />
-    <h1>Benvenuto su ALX Tende e Pergotende</h1>
+  </nav>  <header>
+    <img src="Logo.png" alt="Logo ALX Tende da Sole">
+    <h2>Benvenuto su ALX Tende e Pergotende</h2>
     <p>Sito in costruzione. Torna presto!</p>
-  </section>  <section id="caduta">
-    <h2>Tenda Classica a Caduta</h2>
-    <img class="example" src="tenda1.jpg" alt="Tenda 1" />
-    <img class="example" src="tenda2.jpg" alt="Tenda 2" />
+  </header>  <section class="section" id="tenda-classica">
+    <h3>Tenda Classica a Caduta</h3>
     <p>Prezzo: 70€/mq</p>
-    <input id="larghezza1" type="number" placeholder="Larghezza (m)">
-    <input id="altezza1" type="number" placeholder="Altezza (m)">
-    <button onclick="calcola('prezzo1', 70, 'larghezza1', 'altezza1')">Calcola Prezzo</button>
-    <p id="prezzo1"></p>
-  </section>  <section id="sostituzione">
-    <h2>Sostituzione Teli in Tessuto Tempotest</h2>
-    <p>Prezzo: 35€/mq</p>
-    <input id="larghezza2" type="number" placeholder="Larghezza (m)">
-    <input id="altezza2" type="number" placeholder="Altezza (m)">
-    <input id="colore" type="text" placeholder="Codice Colore Tempotest">
-    <button onclick="calcola('prezzo2', 35, 'larghezza2', 'altezza2')">Calcola Prezzo</button>
-    <p id="prezzo2"></p>
-  </section>  <section id="bracci">
-    <h2>Tenda a Bracci Estensibili</h2>
-    <img class="example" src="bracci1.jpg" alt="Bracci 1" />
-    <img class="example" src="bracci2.jpg" alt="Bracci 2" />
+    <div class="tende-gallery">
+      <img src="tenda1.jpg" alt="Tenda 1">
+      <img src="tenda2.jpg" alt="Tenda 2">
+    </div>
+    <div class="form">
+      <input type="number" id="larghezza1" placeholder="Larghezza (m)">
+      <input type="number" id="altezza1" placeholder="Altezza (m)">
+      <button onclick="calcolaPrezzo(1, 70)">Calcola Prezzo</button>
+      <div class="prezzo" id="prezzo1"></div>
+    </div>
+  </section>  <section class="section" id="tenda-bracci">
+    <h3>Tenda a Bracci Estensibili</h3>
     <p>Prezzo: 170€/mq</p>
-    <input id="larghezza3" type="number" placeholder="Larghezza (m)">
-    <input id="altezza3" type="number" placeholder="Sporgenza (m)">
-    <button onclick="calcola('prezzo3', 170, 'larghezza3', 'altezza3')">Calcola Prezzo</button>
-    <p id="prezzo3"></p>
+    <div class="tende-gallery">
+      <img src="bracci1.jpg" alt="Bracci 1">
+      <img src="bracci2.jpg" alt="Bracci 2">
+    </div>
+    <div class="form">
+      <input type="number" id="larghezza2" placeholder="Larghezza (m)">
+      <input type="number" id="altezza2" placeholder="Altezza (m)">
+      <button onclick="calcolaPrezzo(2, 170)">Calcola Prezzo</button>
+      <div class="prezzo" id="prezzo2"></div>
+    </div>
+  </section>  <section class="section" id="sostituzione-teli">
+    <h3>Sostituzione Teli in Tessuto Tempotest</h3>
+    <p>Prezzo: 35€/mq</p>
+    <div class="form">
+      <input type="number" id="larghezza3" placeholder="Larghezza (m)">
+      <input type="number" id="altezza3" placeholder="Altezza (m)">
+      <input type="text" placeholder="Colore Tempotest con codice">
+      <button onclick="calcolaPrezzo(3, 35)">Calcola Prezzo</button>
+      <div class="prezzo" id="prezzo3"></div>
+    </div>
   </section>  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("menuItems");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    }
-
-    function calcola(prezzoId, costoMq, largId, altId) {
-      const larg = parseFloat(document.getElementById(largId).value);
-      const alt = parseFloat(document.getElementById(altId).value);
-      if (!isNaN(larg) && !isNaN(alt)) {
-        const mq = larg * alt;
-        const prezzo = (mq * costoMq).toFixed(2);
-        document.getElementById(prezzoId).innerText = `Prezzo: €${prezzo}`;
-      } else {
-        document.getElementById(prezzoId).innerText = "Inserisci valori validi.";
-      }
+    function calcolaPrezzo(id, costoMq) {
+      const larghezza = parseFloat(document.getElementById(`larghezza${id}`).value);
+      const altezza = parseFloat(document.getElementById(`altezza${id}`).value);
+      const mq = larghezza * altezza;
+      const prezzo = mq * costoMq;
+      document.getElementById(`prezzo${id}`).innerText =
+        !isNaN(prezzo) ? `Prezzo totale: €${prezzo.toFixed(2)}` : '';
     }
   </script></body>
 </html>
