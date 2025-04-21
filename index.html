@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="it">
+<!DOCTYPE html><html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ALX Tende da Sole</title>
   <style>
     body {
@@ -16,7 +15,7 @@
       height: auto;
       margin-top: 20px;
     }
-    input, select {
+    input, select, button {
       padding: 10px;
       margin: 10px;
       font-size: 1em;
@@ -27,50 +26,93 @@
     h1, h2, p {
       margin: 10px;
     }
+    .menu {
+      margin-top: 20px;
+    }
+    .menu button {
+      background-color: lime;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .menu button:hover {
+      background-color: white;
+    }
   </style>
 </head>
 <body>
   <header>
-    <img src="Logo.png" alt="Logo ALX Tende da Sole" />
+    <img src="Logo.png" alt="Logo ALX Tende da Sole">
     <h1>Benvenuto su ALX Tende e Pergotende</h1>
     <p>Sito in costruzione. Torna presto!</p>
-  </header>
-
-  <section id="prodotto1">
+  </header>  <div class="menu">
+    <button onclick="mostraSezione('new-roma')">New Roma</button>
+    <button onclick="mostraSezione('sostituzione-teli')">Sostituzione Teli</button>
+  </div>  <section id="new-roma" style="display: none;">
     <h2>New Roma - Tenda Classica da Balcone</h2>
-    <img src="tenda1.jpg" alt="Tenda 1" />
-    <img src="tenda2.jpg" alt="Tenda 2" />
-    <img src="tenda3.jpg" alt="Tenda 3" />
+    <img src="tenda1.jpg" alt="Tenda 1">
+    <img src="tenda2.jpg" alt="Tenda 2">
+    <img src="tenda3.jpg" alt="Tenda 3">
     <p>
-      <label for="larghezza">Larghezza (in metri):</label><br />
-      <input type="number" id="larghezza" step="0.1" />
+      <label for="larghezza">Larghezza (in metri):</label><br>
+      <input type="number" id="larghezza" step="0.1">
     </p>
     <p>
-      <label for="altezza">Altezza (in metri):</label><br />
-      <input type="number" id="altezza" step="0.1" />
+      <label for="altezza">Altezza (in metri):</label><br>
+      <input type="number" id="altezza" step="0.1">
     </p>
     <p id="prezzo"></p>
-  </section>
+  </section>  <section id="sostituzione-teli" style="display: none;">
+    <h2>Sostituzione Teli in Tessuto Tempotest</h2>
+    <img src="tempotest.jpg" alt="Esempio Telo Tempotest">
+    <p>Prezzo: 35€/mq</p>
+    <p>
+      <label for="larghezza-telo">Larghezza (in metri):</label><br>
+      <input type="number" id="larghezza-telo" step="0.1">
+    </p>
+    <p>
+      <label for="altezza-telo">Altezza (in metri):</label><br>
+      <input type="number" id="altezza-telo" step="0.1">
+    </p>
+    <p>
+      <label for="colore">Colore Tempotest (con codice):</label><br>
+      <input type="text" id="colore">
+    </p>
+    <p id="prezzo-telo"></p>
+  </section>  <script>
+    function mostraSezione(id) {
+      document.getElementById('new-roma').style.display = 'none';
+      document.getElementById('sostituzione-teli').style.display = 'none';
+      document.getElementById(id).style.display = 'block';
+    }
 
-  <script>
-    const larghezzaInput = document.getElementById("larghezza");
-    const altezzaInput = document.getElementById("altezza");
-    const prezzoOutput = document.getElementById("prezzo");
+    document.getElementById('larghezza')?.addEventListener('input', calcolaPrezzoTenda);
+    document.getElementById('altezza')?.addEventListener('input', calcolaPrezzoTenda);
 
-    function calcolaPrezzo() {
-      const larghezza = parseFloat(larghezzaInput.value);
-      const altezza = parseFloat(altezzaInput.value);
-      if (!isNaN(larghezza) && !isNaN(altezza)) {
-        const mq = larghezza * altezza;
+    function calcolaPrezzoTenda() {
+      const l = parseFloat(document.getElementById("larghezza").value);
+      const h = parseFloat(document.getElementById("altezza").value);
+      if (!isNaN(l) && !isNaN(h)) {
+        const mq = l * h;
         const prezzo = mq * 35;
-        prezzoOutput.textContent = `Prezzo: €${prezzo.toFixed(2)}`;
-      } else {
-        prezzoOutput.textContent = "";
+        document.getElementById("prezzo").textContent = `Prezzo: €${prezzo.toFixed(2)}`;
       }
     }
 
-    larghezzaInput.addEventListener("input", calcolaPrezzo);
-    altezzaInput.addEventListener("input", calcolaPrezzo);
-  </script>
-</body>
+    document.getElementById('larghezza-telo')?.addEventListener('input', calcolaPrezzoTelo);
+    document.getElementById('altezza-telo')?.addEventListener('input', calcolaPrezzoTelo);
+
+    function calcolaPrezzoTelo() {
+      const l = parseFloat(document.getElementById("larghezza-telo").value);
+      const h = parseFloat(document.getElementById("altezza-telo").value);
+      if (!isNaN(l) && !isNaN(h)) {
+        const mq = l * h;
+        const prezzo = mq * 35;
+        document.getElementById("prezzo-telo").textContent = `Prezzo sostituzione telo: €${prezzo.toFixed(2)}`;
+      }
+    }
+  </script></body>
 </html>
