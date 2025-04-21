@@ -31,38 +31,50 @@
   </style>
 </head>
 <body>
-  <header>
-    <img src="Logo.png" alt="Logo ALX Tende da Sole" class="logo">
+  <header><body>
+  <nav style="background-color: #111; padding: 10px; text-align: center;">
+    <a href="#new-roma" style="color: lime; margin: 0 15px; text-decoration: none; font-weight: bold;">New Roma</a>
+  </nav>
+
+  <header style="text-align: center; padding: 30px; background-color: black; color: lime;">
+    <img src="logo.png" alt="Logo ALX Tende da Sole" style="width: 250px;">
     <h1>Benvenuto su ALX Tende e Pergotende</h1>
     <p>Sito in costruzione. Torna presto!</p>
-  </header><section id="prodotti" style="background-color: #000; color: #0f0; padding: 40px 20px; text-align: center;">
-  <h2 style="font-size: 2em; margin-bottom: 30px;">I nostri modelli di Tende da Sole</h2>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-    <div style="border: 1px solid #0f0; border-radius: 15px; padding: 20px;">
-      <h3>New Roma</h3>
-      <p>Tenda da balcone a caduta classica. Movimento a molla, ad argano o motorizzata.</p>
+  </header>
+
+  <section id="new-roma" style="padding: 30px; background-color: #000; color: lime;">
+    <h2>New Roma - Tenda Classica da Balcone</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 20px 0;">
+      <img src="tenda1.jpg" alt="Tenda 1" style="width: 200px;">
+      <img src="tenda2.jpg" alt="Tenda 2" style="width: 200px;">
+      <img src="tenda3.jpg" alt="Tenda 3" style="width: 200px;">
     </div>
-    <div style="border: 1px solid #0f0; border-radius: 15px; padding: 20px;">
-      <h3>T. Daniela</h3>
-      <p>Tenda a bracci estensibili. Movimento ad argano o motorizzata.</p>
-    </div>
-    <div style="border: 1px solid #0f0; border-radius: 15px; padding: 20px;">
-      <h3>Tendal E.</h3>
-      <p>Tenda a cappano con guide laterali. Robusta ed elegante.</p>
-    </div>
-    <div style="border: 1px solid #0f0; border-radius: 15px; padding: 20px;">
-      <h3>T. Alessia</h3>
-      <p>Cappottina raffinata, ideale per finestre e ingressi.</p>
-    </div>
-    <div style="border: 1px solid #0f0; border-radius: 15px; padding: 20px;">
-      <h3>T. Veranda Profil.</h3>
-      <p>Tenda ermetica in crystal per coperture trasparenti e protettive.</p>
-    </div>
-    <div style="border: 1px solid #0f0; border-radius: 15px; padding: 20px;">
-      <h3>Pergotende</h3>
-      <p>Strutture in alluminio con telo retraibile. Eleganti e versatili per ogni ambiente.</p>
-    </div>
-  </div>
-</section>
+
+    <label for="larghezza">Larghezza (in metri):</label>
+    <input type="number" id="larghezza" min="0" step="0.1"><br><br>
+
+    <label for="altezza">Altezza (in metri):</label>
+    <input type="number" id="altezza" min="0" step="0.1"><br><br>
+
+    <button onclick="calcolaPrezzo()">Calcola Prezzo</button>
+    <p id="prezzo"></p>
+  </section>
+
+  <script>
+    function calcolaPrezzo() {
+      const larghezza = parseFloat(document.getElementById('larghezza').value);
+      const altezza = parseFloat(document.getElementById('altezza').value);
+      const prezzoBase = 80; // €/mq
+
+      if (isNaN(larghezza) || isNaN(altezza)) {
+        document.getElementById('prezzo').innerText = 'Inserisci larghezza e altezza valide.';
+        return;
+      }
+
+      const prezzo = larghezza * altezza * prezzoBase;
+      document.getElementById('prezzo').innerText = `Prezzo: €${prezzo.toFixed(2)}`;
+    }
+  </script>
+</body>
 </body>
 </html>
