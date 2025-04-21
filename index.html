@@ -30,7 +30,54 @@
     }
   </style>
 </head>
-<body><section id="sostituzione-telo" style="background-color: #000; color: #0f0; padding: 40px; text-align: center;">
+<body>
+</script>
+  <header><body>
+  <nav style="background-color: #111; padding: 10px; text-align: center;">
+    <a href="#new-roma" style="color: lime; margin: 0 15px; text-decoration: none; font-weight: bold;">New Roma</a>
+  </nav>
+
+  <header style="text-align: center; padding: 30px; background-color: black; color: lime;">
+    <img src="Logo.png" alt="Logo ALX Tende da Sole" style="width: 250px;">
+    <h1>Benvenuto su ALX Tende e Pergotende</h1>
+    <p>Sito in costruzione. Torna presto!</p>
+  </header>
+
+  <section id="new-roma" style="padding: 30px; background-color: #000; color: lime;">
+    <h2>New Roma - Tenda Classica da Balcone</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 20px 0;">
+      <img src="tenda1.jpg" alt="Tenda 1" style="width: 200px;">
+      <img src="tenda2.jpg" alt="Tenda 2" style="width: 200px;">
+      <img src="tenda3.jpg" alt="Tenda 3" style="width: 200px;">
+    </div>
+
+    <label for="larghezza">Larghezza (in metri):</label>
+    <input type="number" id="larghezza" min="0" step="0.1"><br><br>
+
+    <label for="altezza">Altezza (in metri):</label>
+    <input type="number" id="altezza" min="0" step="0.1"><br><br>
+
+    <button onclick="calcolaPrezzo()">Calcola Prezzo</button>
+    <p id="prezzo"></p>
+  </section>
+
+  <script>
+    function calcolaPrezzo() {
+      const larghezza = parseFloat(document.getElementById('larghezza').value);
+      const altezza = parseFloat(document.getElementById('altezza').value);
+      const prezzoBase = 70; // €/mq
+
+      if (isNaN(larghezza) || isNaN(altezza)) {
+        document.getElementById('prezzo').innerText = 'Inserisci larghezza e altezza valide.';
+        return;
+      }
+
+      const prezzo = larghezza * altezza * prezzoBase;
+      document.getElementById('prezzo').innerText = `Prezzo: €${prezzo.toFixed(2)}`;
+    }
+  </script>
+</body>
+    <section id="sostituzione-telo" style="background-color: #000; color: #0f0; padding: 40px; text-align: center;">
   <h2>Sostituzione Telo in Tessuto Tempotest</h2>
   <p>Calcola il prezzo per la sostituzione del telo: <strong>35€/mq</strong></p>
 
@@ -76,51 +123,5 @@
     const prezzo = (area * prezzoMq).toFixed(2);
     document.getElementById('prezzo-telo').innerText = `Prezzo sostituzione telo: €${prezzo}`;
   }
-</script>
-  <header><body>
-  <nav style="background-color: #111; padding: 10px; text-align: center;">
-    <a href="#new-roma" style="color: lime; margin: 0 15px; text-decoration: none; font-weight: bold;">New Roma</a>
-  </nav>
-
-  <header style="text-align: center; padding: 30px; background-color: black; color: lime;">
-    <img src="logo.png" alt="Logo ALX Tende da Sole" style="width: 250px;">
-    <h1>Benvenuto su ALX Tende e Pergotende</h1>
-    <p>Sito in costruzione. Torna presto!</p>
-  </header>
-
-  <section id="new-roma" style="padding: 30px; background-color: #000; color: lime;">
-    <h2>New Roma - Tenda Classica da Balcone</h2>
-    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 20px 0;">
-      <img src="tenda1.jpg" alt="Tenda 1" style="width: 200px;">
-      <img src="tenda2.jpg" alt="Tenda 2" style="width: 200px;">
-      <img src="tenda3.jpg" alt="Tenda 3" style="width: 200px;">
-    </div>
-
-    <label for="larghezza">Larghezza (in metri):</label>
-    <input type="number" id="larghezza" min="0" step="0.1"><br><br>
-
-    <label for="altezza">Altezza (in metri):</label>
-    <input type="number" id="altezza" min="0" step="0.1"><br><br>
-
-    <button onclick="calcolaPrezzo()">Calcola Prezzo</button>
-    <p id="prezzo"></p>
-  </section>
-
-  <script>
-    function calcolaPrezzo() {
-      const larghezza = parseFloat(document.getElementById('larghezza').value);
-      const altezza = parseFloat(document.getElementById('altezza').value);
-      const prezzoBase = 70; // €/mq
-
-      if (isNaN(larghezza) || isNaN(altezza)) {
-        document.getElementById('prezzo').innerText = 'Inserisci larghezza e altezza valide.';
-        return;
-      }
-
-      const prezzo = larghezza * altezza * prezzoBase;
-      document.getElementById('prezzo').innerText = `Prezzo: €${prezzo.toFixed(2)}`;
-    }
-  </script>
-</body>
 </body>
 </html>
