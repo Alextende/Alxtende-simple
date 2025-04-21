@@ -1,121 +1,124 @@
-
-<!DOCTYPE html>
-<html lang="it">
+<!DOCTYPE html><html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>ALX Tende e Pergotende</title>
-    <style>
-        body {
-            background-color: black;
-            color: lime;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        header img {
-            max-width: 200px;
-            margin-top: 20px;
-        }
-        h1, p {
-            margin: 10px 0;
-        }
-        .menu {
-            margin: 20px;
-        }
-        .menu button {
-            background-color: lime;
-            color: black;
-            border: none;
-            padding: 10px 20px;
-            margin: 10px;
-            cursor: pointer;
-            font-size: 1.2em;
-        }
-        .section {
-            display: none;
-            margin: 20px;
-        }
-        .immagini-tenda {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        .immagini-tenda img {
-            width: 150px;
-            border: 2px solid lime;
-        }
-        input, select {
-            padding: 5px;
-            margin: 5px;
-            width: 200px;
-        }
-    </style>
-    <script>
-        function mostraSezione(id) {
-            var sezioni = document.querySelectorAll('.section');
-            sezioni.forEach(function(sezione) {
-                sezione.style.display = 'none';
-            });
-            document.getElementById(id).style.display = 'block';
-        }
-
-        function calcolaPrezzo(idPrezzo, prezzoMq) {
-            var larghezza = parseFloat(document.getElementById(idPrezzo + '_larghezza').value) || 0;
-            var altezza = parseFloat(document.getElementById(idPrezzo + '_altezza').value) || 0;
-            var mq = larghezza * altezza;
-            var prezzo = mq * prezzoMq;
-            document.getElementById(idPrezzo).textContent = 'Prezzo: €' + prezzo.toFixed(2);
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALX Tende e Pergotende</title>
+  <style>
+    body {
+      background-color: black;
+      color: lime;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    header img {
+      width: 200px;
+      margin-top: 10px;
+    }
+    nav {
+      background-color: #111;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .menu-toggle {
+      font-size: 24px;
+      cursor: pointer;
+      margin-left: 20px;
+    }
+    .menu-items {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 50px;
+      left: 10px;
+      background-color: #222;
+      padding: 10px;
+    }
+    .menu-items a {
+      color: lime;
+      text-decoration: none;
+      margin: 5px 0;
+    }
+    section {
+      padding: 80px 20px 20px;
+    }
+    input, select {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: lime;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    img.example {
+      width: 120px;
+      margin: 10px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="Logo.png" alt="Logo ALX Tende da Sole">
-        <h1>Benvenuto su ALX Tende e Pergotende</h1>
-        <p>Sito in costruzione. Torna presto!</p>
-    </header>
-    <div class="menu">
-        <button onclick="mostraSezione('caduta')">Tenda Classica a Caduta</button>
-        <button onclick="mostraSezione('teli')">Sostituzione Teli</button>
-        <button onclick="mostraSezione('bracci')">Tenda a Bracci Estensibili</button>
+  <nav>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="menu-items" id="menuItems">
+      <a href="#caduta">Tenda Classica a Caduta</a>
+      <a href="#sostituzione">Sostituzione Teli</a>
+      <a href="#bracci">Tenda a Bracci Estensibili</a>
     </div>
+  </nav>  <section>
+    <img src="Logo.png" alt="Logo ALX Tende da Sole" />
+    <h1>Benvenuto su ALX Tende e Pergotende</h1>
+    <p>Sito in costruzione. Torna presto!</p>
+  </section>  <section id="caduta">
+    <h2>Tenda Classica a Caduta</h2>
+    <img class="example" src="tenda1.jpg" alt="Tenda 1" />
+    <img class="example" src="tenda2.jpg" alt="Tenda 2" />
+    <p>Prezzo: 70€/mq</p>
+    <input id="larghezza1" type="number" placeholder="Larghezza (m)">
+    <input id="altezza1" type="number" placeholder="Altezza (m)">
+    <button onclick="calcola('prezzo1', 70, 'larghezza1', 'altezza1')">Calcola Prezzo</button>
+    <p id="prezzo1"></p>
+  </section>  <section id="sostituzione">
+    <h2>Sostituzione Teli in Tessuto Tempotest</h2>
+    <p>Prezzo: 35€/mq</p>
+    <input id="larghezza2" type="number" placeholder="Larghezza (m)">
+    <input id="altezza2" type="number" placeholder="Altezza (m)">
+    <input id="colore" type="text" placeholder="Codice Colore Tempotest">
+    <button onclick="calcola('prezzo2', 35, 'larghezza2', 'altezza2')">Calcola Prezzo</button>
+    <p id="prezzo2"></p>
+  </section>  <section id="bracci">
+    <h2>Tenda a Bracci Estensibili</h2>
+    <img class="example" src="bracci1.jpg" alt="Bracci 1" />
+    <img class="example" src="bracci2.jpg" alt="Bracci 2" />
+    <p>Prezzo: 170€/mq</p>
+    <input id="larghezza3" type="number" placeholder="Larghezza (m)">
+    <input id="altezza3" type="number" placeholder="Sporgenza (m)">
+    <button onclick="calcola('prezzo3', 170, 'larghezza3', 'altezza3')">Calcola Prezzo</button>
+    <p id="prezzo3"></p>
+  </section>  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menuItems");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
 
-    <div id="caduta" class="section">
-        <h2>Tenda Classica a Caduta</h2>
-        <div class="immagini-tenda">
-            <img src="tenda1.jpg" alt="Tenda 1">
-            <img src="tenda2.jpg" alt="Tenda 2">
-        </div>
-        <p>Prezzo: 70€/mq</p>
-        <input id="caduta_larghezza" placeholder="Larghezza (in metri)" type="number" step="0.01">
-        <input id="caduta_altezza" placeholder="Altezza (in metri)" type="number" step="0.01">
-        <button onclick="calcolaPrezzo('caduta', 70)">Calcola Prezzo</button>
-        <p id="caduta">Prezzo: €0.00</p>
-    </div>
-
-    <div id="teli" class="section">
-        <h2>Sostituzione Teli in Tessuto Tempotest</h2>
-        <p>Prezzo: 35€/mq</p>
-        <input id="teli_larghezza" placeholder="Larghezza (in metri)" type="number" step="0.01">
-        <input id="teli_altezza" placeholder="Altezza (in metri)" type="number" step="0.01">
-        <input placeholder="Codice Colore Tempotest" type="text">
-        <button onclick="calcolaPrezzo('teli', 35)">Calcola Prezzo</button>
-        <p id="teli">Prezzo: €0.00</p>
-    </div>
-
-    <div id="bracci" class="section">
-        <h2>Tenda a Bracci Estensibili</h2>
-        <div class="immagini-tenda">
-            <img src="bracci1.jpg" alt="Bracci Estensibili 1">
-            <img src="bracci2.jpg" alt="Bracci Estensibili 2">
-        </div>
-        <p>Prezzo: 170€/mq</p>
-        <input id="bracci_larghezza" placeholder="Larghezza (in metri)" type="number" step="0.01">
-        <input id="bracci_altezza" placeholder="Altezza (in metri)" type="number" step="0.01">
-        <button onclick="calcolaPrezzo('bracci', 170)">Calcola Prezzo</button>
-        <p id="bracci">Prezzo: €0.00</p>
-    </div>
-</body>
+    function calcola(prezzoId, costoMq, largId, altId) {
+      const larg = parseFloat(document.getElementById(largId).value);
+      const alt = parseFloat(document.getElementById(altId).value);
+      if (!isNaN(larg) && !isNaN(alt)) {
+        const mq = larg * alt;
+        const prezzo = (mq * costoMq).toFixed(2);
+        document.getElementById(prezzoId).innerText = `Prezzo: €${prezzo}`;
+      } else {
+        document.getElementById(prezzoId).innerText = "Inserisci valori validi.";
+      }
+    }
+  </script></body>
 </html>
